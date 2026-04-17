@@ -17,19 +17,6 @@ export function HistoryChart() {
 
   return (
     <section className="space-y-8">
-      <header className="flex flex-wrap items-start justify-between gap-4">
-        <div>
-          <h1 className="text-6xl font-semibold text-slate-100">Historical Data</h1>
-          <p className="mt-3 max-w-2xl text-base text-slate-400">
-            Review past atmospheric metrics and identify long-term environmental trends across all
-            sensor arrays.
-          </p>
-        </div>
-        <button className="rounded-lg border border-slate-700 bg-slate-900/80 px-5 py-3 text-base text-slate-300 hover:border-cyan-500/40 hover:text-cyan-200">
-          Export CSV
-        </button>
-      </header>
-
       <div className="rounded-2xl border border-slate-800 bg-slate-900/60 p-5">
         <div className="flex flex-wrap items-center gap-4">
           <input
