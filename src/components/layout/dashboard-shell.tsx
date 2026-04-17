@@ -1,4 +1,7 @@
+"use client";
+
 import type { ReactNode } from "react";
+import { useState } from "react";
 import { Sidebar } from "@/components/layout/Sidebar";
 
 type DashboardShellProps = {
@@ -6,11 +9,15 @@ type DashboardShellProps = {
 };
 
 export function DashboardShell({ children }: DashboardShellProps) {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_35%_0%,rgba(56,189,248,0.16),transparent_35%),radial-gradient(circle_at_90%_80%,rgba(14,116,144,0.22),transparent_45%),#020617] text-slate-100">
       <div className="flex min-h-screen w-full flex-col">
-        <Sidebar />
-        <main className="flex-1 px-5 py-6 md:ml-[28rem] md:px-10 md:py-8">{children}</main>
+        <Sidebar isOpen={sidebarOpen} onToggle={() => setSidebarOpen((current) => !current)} />
+        <main className={`flex-1 px-5 py-6 transition-[margin] duration-300 md:px-10 md:py-8 ${sidebarOpen ? "md:ml-[28rem]" : "md:ml-24"}`}>
+          {children}
+        </main>
       </div>
     </div>
   );
