@@ -1,9 +1,10 @@
 import { Topbar } from "@/components/layout/topbar";
 import { AboutOverview } from "@/components/sections/about-overview";
+import styles from "../dashboard-page.module.css";
 
 export default function AboutPage() {
   return (
-    <div className="space-y-8">
+    <div className={styles.page}>
       <Topbar
         title="Understanding the Ethereal Observer"
         description="Learn how this cloud-based air monitoring system processes and presents data."

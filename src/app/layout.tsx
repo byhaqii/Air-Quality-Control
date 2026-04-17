@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
+import styles from "./layout.module.css";
 
 const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
@@ -18,8 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-slate-950 text-slate-100">{children}</body>
+    <html lang="en" className={`${jetbrainsMono.variable} ${styles.htmlRoot}`}>
+      <body className={styles.body}>{children}</body>
     </html>
   );
 }

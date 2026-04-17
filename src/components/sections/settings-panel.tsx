@@ -1,38 +1,20 @@
-const preferences = [
-  {
-    title: "Live Sync",
-    description: "Refresh dashboard values every 10 seconds.",
-    enabled: true,
-  },
-  {
-    title: "Alert Notifications",
-    description: "Send alerts when AQI crosses the warning threshold.",
-    enabled: true,
-  },
-  {
-    title: "Auto Export",
-    description: "Generate a weekly summary in CSV format.",
-    enabled: false,
-  },
-];
+import styles from "./settings-panel.module.css";
+import { SETTINGS_ITEMS } from "./settings-data";
+
+function getStatusClassName(enabled: boolean) {
+  return `${styles.status} ${enabled ? styles.statusOn : styles.statusOff}`;
+}
 
 export function SettingsPanel() {
   return (
-    <section className="space-y-5">
-      {preferences.map((item) => (
-        <article
-          key={item.title}
-          className="flex flex-col gap-4 rounded-2xl border border-slate-800 bg-slate-900/70 p-7 md:flex-row md:items-center md:justify-between"
-        >
+    <section className={styles.section}>
+      {SETTINGS_ITEMS.map((item) => (
+        <article key={item.title} className={styles.card}>
           <div>
-            <h3 className="text-xl font-semibold text-slate-100">{item.title}</h3>
-            <p className="text-base text-slate-400">{item.description}</p>
+            <h3 className={styles.title}>{item.title}</h3>
+            <p className={styles.desc}>{item.description}</p>
           </div>
-          <span
-            className={`inline-flex rounded-full px-4 py-2 text-base ${
-              item.enabled ? "bg-cyan-400/15 text-cyan-200" : "bg-slate-700 text-slate-300"
-            }`}
-          >
+          <span className={getStatusClassName(item.enabled)}>
             {item.enabled ? "Enabled" : "Disabled"}
           </span>
         </article>
