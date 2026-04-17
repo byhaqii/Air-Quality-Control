@@ -1,0 +1,46 @@
+.card {
+  border-radius: 1rem;
+  border: 1px solid rgb(30 41 59 / 0.8);
+  background: rgb(15 23 42 / 0.7);
+  padding: 1.75rem;
+  box-shadow: 0 20px 60px -40px rgb(34 211 238 / 0.5);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.label {
+  font-size: 1rem;
+  color: rgb(148 163 184);
+}
+
+.trend {
+  font-size: 0.875rem;
+}
+
+.trendRose {
+  color: rgb(253 164 175);
+}
+
+.trendSlate {
+  color: rgb(203 213 225);
+}
+
+.trendCyan {
+  color: rgb(103 232 249);
+}
+
+.value {
+  margin-top: 0.75rem;
+  font-size: 3rem;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.unit {
+  font-size: 1rem;
+  color: rgb(100 116 139);
+}

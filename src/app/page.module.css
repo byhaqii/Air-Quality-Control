@@ -1,0 +1,217 @@
+.root {
+  position: relative;
+  isolation: isolate;
+  min-height: 100vh;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 10%, rgb(56 189 248 / 0.2), transparent 30%),
+    radial-gradient(circle at 80% 75%, rgb(14 116 144 / 0.3), transparent 42%),
+    #020617;
+}
+
+.container {
+  margin: 0 auto;
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  max-width: 72rem;
+  flex-direction: column;
+  padding: 2rem 1.5rem;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(30 41 59 / 0.8);
+  padding-bottom: 1.5rem;
+}
+
+.brand {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: rgb(103 232 249);
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  font-size: 1rem;
+  color: rgb(148 163 184);
+}
+
+.navLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navLink:hover {
+  color: rgb(165 243 252);
+}
+
+.main {
+  display: grid;
+  flex: 1;
+  align-items: center;
+  gap: 3rem;
+  padding: 3rem 0;
+}
+
+.status {
+  display: inline-flex;
+  border-radius: 9999px;
+  border: 1px solid rgb(34 211 238 / 0.2);
+  background: rgb(34 211 238 / 0.1);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(165 243 252);
+}
+
+.heroTitle {
+  margin-top: 2rem;
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.heroAccent {
+  color: rgb(103 232 249);
+}
+
+.heroDesc {
+  margin-top: 2rem;
+  max-width: 34rem;
+  font-size: 1.25rem;
+  line-height: 2.25rem;
+  color: rgb(148 163 184);
+}
+
+.actions {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cta {
+  border-radius: 0.75rem;
+  background: rgb(34 211 238);
+  padding: 1rem 1.75rem;
+  font-weight: 500;
+  color: rgb(15 23 42);
+  text-decoration: none;
+  transition: background 160ms ease;
+}
+
+.cta:hover {
+  background: rgb(103 232 249);
+}
+
+.visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0;
+}
+
+.ringOuter {
+  position: absolute;
+  height: 25rem;
+  width: 25rem;
+  border-radius: 9999px;
+  border: 1px solid rgb(34 211 238 / 0.2);
+}
+
+.ringGlow {
+  position: absolute;
+  height: 20rem;
+  width: 20rem;
+  border-radius: 9999px;
+  background: rgb(103 232 249 / 0.1);
+  filter: blur(40px);
+}
+
+.aqiCard {
+  position: relative;
+  display: grid;
+  height: 18.75rem;
+  width: 18.75rem;
+  place-items: center;
+  border-radius: 9999px;
+  border: 1px solid rgb(34 211 238 / 0.25);
+  background: rgb(15 23 42 / 0.85);
+  box-shadow: 0 0 80px rgb(56 189 248 / 0.25);
+}
+
+.aqiCenter {
+  text-align: center;
+}
+
+.aqiValue {
+  font-size: 6rem;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.aqiLabel {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgb(148 163 184);
+}
+
+.miniCard {
+  position: absolute;
+  border-radius: 0.75rem;
+  border: 1px solid rgb(30 41 59);
+  background: rgb(15 23 42 / 0.85);
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.miniCardTemp {
+  left: 0;
+  top: 3rem;
+}
+
+.miniCardCo2 {
+  right: 0;
+  bottom: 3rem;
+}
+
+.miniLabel {
+  color: rgb(148 163 184);
+}
+
+.miniValue {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: rgb(165 243 252);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .heroTitle {
+    font-size: 4.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .main {
+    grid-template-columns: 1fr 1fr;
+  }
+}

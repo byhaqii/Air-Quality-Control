@@ -1,0 +1,51 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  border-radius: 1rem;
+  border: 1px solid rgb(30 41 59);
+  background: rgb(15 23 42 / 0.7);
+  padding: 1.75rem;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.desc {
+  font-size: 1rem;
+  color: rgb(148 163 184);
+}
+
+.status {
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+.statusOn {
+  background: rgb(34 211 238 / 0.15);
+  color: rgb(165 243 252);
+}
+
+.statusOff {
+  background: rgb(51 65 85);
+  color: rgb(203 213 225);
+}
+
+@media (min-width: 768px) {
+  .card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

@@ -1,0 +1,238 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.controlsCard {
+  border-radius: 1rem;
+  border: 1px solid rgb(30 41 59);
+  background: rgb(15 23 42 / 0.6);
+  padding: 1.25rem;
+}
+
+.controlsRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.searchInput {
+  height: 3rem;
+  width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(51 65 85);
+  background: rgb(2 6 23 / 0.7);
+  padding: 0 1rem;
+  font-size: 1rem;
+  color: rgb(226 232 240);
+}
+
+.searchInput::placeholder {
+  color: rgb(100 116 139);
+}
+
+.tabWrap {
+  display: inline-flex;
+  border-radius: 0.5rem;
+  border: 1px solid rgb(51 65 85);
+  background: rgb(2 6 23 / 0.7);
+  padding: 0.25rem;
+}
+
+.tabButton {
+  border: 0;
+  border-radius: 0.375rem;
+  background: transparent;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: rgb(148 163 184);
+}
+
+.tabButtonActive {
+  background: rgb(51 65 85);
+  color: rgb(226 232 240);
+}
+
+.datePill {
+  border-radius: 0.5rem;
+  border: 1px solid rgb(51 65 85);
+  background: rgb(2 6 23 / 0.7);
+  padding: 0.625rem 1rem;
+  font-size: 1rem;
+  color: rgb(203 213 225);
+}
+
+.chartCard {
+  border-radius: 1.5rem;
+  border: 1px solid rgb(30 41 59);
+  background: rgb(15 23 42 / 0.7);
+  padding: 2rem;
+}
+
+.chartHeader {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chartTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.chartSubtitle {
+  margin-top: 0.25rem;
+  font-size: 1rem;
+  color: rgb(148 163 184);
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: rgb(203 213 225);
+}
+
+.legendPill {
+  border-radius: 9999px;
+  background: rgb(34 211 238 / 0.2);
+  padding: 0.375rem 0.75rem;
+}
+
+.barsGrid {
+  display: grid;
+  height: 20rem;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.75rem;
+  border-top: 1px solid rgb(30 41 59);
+  padding-top: 1.5rem;
+}
+
+.barItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bar {
+  width: 100%;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  background: linear-gradient(to top, rgb(21 94 117 / 0.35), rgb(103 232 249 / 0.8));
+}
+
+.barLabel {
+  font-size: 0.875rem;
+  color: rgb(148 163 184);
+}
+
+.anomalyHeader {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.anomalyTitle {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: rgb(241 245 249);
+}
+
+.viewLogBtn {
+  border: 0;
+  background: transparent;
+  font-size: 1rem;
+  color: rgb(103 232 249);
+}
+
+.viewLogBtn:hover {
+  color: rgb(165 243 252);
+}
+
+.tableWrap {
+  overflow-x: auto;
+  border-radius: 1rem;
+  border: 1px solid rgb(30 41 59);
+  background: rgb(15 23 42 / 0.7);
+}
+
+.table {
+  min-width: 100%;
+  font-size: 1rem;
+  border-collapse: collapse;
+}
+
+.thead {
+  border-bottom: 1px solid rgb(30 41 59);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgb(148 163 184);
+}
+
+.th,
+.td {
+  padding: 1rem 1.25rem;
+  text-align: left;
+}
+
+.row {
+  border-bottom: 1px solid rgb(30 41 59 / 0.6);
+}
+
+.row:last-child {
+  border-bottom: 0;
+}
+
+.time {
+  color: rgb(148 163 184);
+}
+
+.sensor,
+.temp {
+  color: rgb(203 213 225);
+}
+
+.pm {
+  color: rgb(253 164 175);
+}
+
+.co2 {
+  color: rgb(103 232 249);
+}
+
+.statusPill {
+  display: inline-flex;
+  border-radius: 9999px;
+  padding: 0.375rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.statusElevated {
+  background: rgb(244 63 94 / 0.15);
+  color: rgb(253 164 175);
+}
+
+.statusModerate {
+  background: rgb(6 182 212 / 0.15);
+  color: rgb(103 232 249);
+}
+
+.statusOptimal {
+  background: rgb(20 184 166 / 0.15);
+  color: rgb(94 234 212);
+}
+
+@media (min-width: 768px) {
+  .searchInput {
+    width: 38%;
+  }
+}

@@ -1,0 +1,43 @@
+.root {
+  min-height: 100vh;
+  color: rgb(241 245 249);
+  background:
+    radial-gradient(circle at 35% 0%, rgb(56 189 248 / 0.16), transparent 35%),
+    radial-gradient(circle at 90% 80%, rgb(14 116 144 / 0.22), transparent 45%),
+    #020617;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding: 1.5rem 1.25rem;
+  transition: margin 300ms ease;
+}
+
+.mainOpen {
+  margin-left: 0;
+}
+
+.mainClosed {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 2rem 2.5rem;
+  }
+
+  .mainOpen {
+    margin-left: 27rem;
+  }
+
+  .mainClosed {
+    margin-left: 8.5rem;
+  }
+}
