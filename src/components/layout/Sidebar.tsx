@@ -15,12 +15,12 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-full border-b border-slate-800/80 bg-[#020b18] px-7 py-8 md:fixed md:inset-y-0 md:left-0 md:flex md:w-80 md:flex-col md:border-b-0 md:border-r md:border-r-cyan-950/60 md:px-7 md:py-10">
+    <aside className="w-full border-b border-slate-800/80 bg-[#020b18] px-8 py-9 md:fixed md:inset-y-0 md:left-0 md:flex md:w-96 md:flex-col md:border-b-0 md:border-r md:border-r-cyan-950/60 md:px-8 md:py-10">
       <div className="mb-12 flex items-center gap-5 md:mb-14">
-        <div className="h-14 w-14 rounded-full bg-slate-700/70" />
+        <div className="h-16 w-16 rounded-full bg-slate-700/70 ring-1 ring-slate-600/60" />
         <div>
-          <h2 className="text-xl font-semibold leading-tight text-cyan-200">Atmospheric In...</h2>
-          <p className="mt-1 text-sm text-slate-500">Ethereal Observer</p>
+          <h2 className="text-2xl font-semibold leading-tight text-cyan-100">Atmospheric In...</h2>
+          <p className="mt-1 text-sm font-medium text-slate-400">Ethereal Observer</p>
         </div>
       </div>
 
@@ -31,10 +31,10 @@ export function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className={`rounded-lg px-6 py-4 text-lg font-medium transition ${
+              className={`w-full rounded-xl px-7 py-4.5 text-lg font-semibold tracking-[0.01em] transition ${
                 isActive
-                  ? "bg-cyan-400/10 text-cyan-200 ring-1 ring-cyan-400/30"
-                  : "text-slate-400 hover:bg-slate-900/70 hover:text-slate-200"
+                  ? "bg-cyan-400/15 text-cyan-100 ring-1 ring-cyan-400/35"
+                  : "text-slate-300 hover:bg-slate-900/80 hover:text-slate-100"
               }`}
             >
               {item.label}
@@ -43,7 +43,7 @@ export function Sidebar() {
         })}
       </nav>
 
-      <button className="mt-12 w-full rounded-xl bg-cyan-400 px-7 py-4 text-lg font-semibold text-slate-950 hover:bg-cyan-300 md:mt-auto">
+      <button className="mt-12 w-full rounded-xl bg-cyan-400 px-7 py-4.5 text-lg font-semibold text-slate-950 hover:bg-cyan-300 md:mt-auto">
         Refresh Sensors
       </button>
     </aside>
