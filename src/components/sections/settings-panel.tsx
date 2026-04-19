@@ -9,7 +9,7 @@ export function SettingsPanel() {
   return (
     <section className={styles.section}>
       {SETTINGS_ITEMS.map((item) => (
-        <article key={item.title} className={styles.card}>
+        <article key={item.title} className={styles.card} data-card>
           <div>
             <h3 className={styles.title}>{item.title}</h3>
             <p className={styles.desc}>{item.description}</p>

@@ -18,6 +18,8 @@ const NAV_ICON_MAP: Record<string, string> = {
   Settings: "⚙",
 };
 
+const LOGOUT_ICON = "⎋";
+
 type SidebarProps = {
   isOpen: boolean;
   onToggle: () => void;
@@ -48,6 +50,10 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
     return `${styles.iconText} ${isActive ? styles.iconTextActive : ""}`;
   };
 
+  const getNavTextClassName = () => {
+    return `${styles.navText} ${isOpen ? "" : styles.navTextClosed}`;
+  };
+
   const renderNavLink = (item: SidebarNavItem) => {
     const isActive = pathname === item.href;
     const iconSymbol = NAV_ICON_MAP[item.label] ?? "•";
@@ -62,9 +68,29 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
         <span className={getIndicatorClassName(isActive)}>
           <span className={getIconTextClassName(isActive)}>{iconSymbol}</span>
         </span>
-        {isOpen ? <span>{item.label}</span> : null}
+        <span className={getNavTextClassName()}>{item.label}</span>
       </Link>
     );
+  };
+
+  const handleLogout = () => {
+    if (typeof window !== "undefined") {
+      try {
+        window.sessionStorage.clear();
+        window.localStorage.clear();
+
+        for (const cookie of document.cookie.split(";")) {
+          const cookieName = cookie.split("=")[0]?.trim();
+          if (!cookieName) {
+            continue;
+          }
+
+          document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+        }
+      } catch {
+        // Ignore storage access issues and continue redirect.
+      }
+    }
   };
 
   return (
@@ -91,12 +117,19 @@ export function Sidebar({ isOpen, onToggle }: SidebarProps) {
       </nav>
 
       {isOpen ? (
-        <button className={styles.refreshOpen}>
-          Refresh Sensors
+        <button type="button" className={styles.refreshOpen} onClick={handleLogout}>
+          <span className={styles.logoutIcon} aria-hidden="true">{LOGOUT_ICON}</span>
+          <span>Logout</span>
         </button>
       ) : (
-        <button className={styles.refreshClosed} aria-label="Refresh Sensors" title="Refresh Sensors">
-          R
+        <button
+          type="button"
+          className={styles.refreshClosed}
+          aria-label="Logout"
+          title="Logout"
+          onClick={handleLogout}
+        >
+          {LOGOUT_ICON}
         </button>
       )}
     </aside>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { JetBrains_Mono } from "next/font/google";
+import { CursorGlow } from "@/components/ui/cursor-glow";
 import "./globals.css";
 import styles from "./layout.module.css";
 
@@ -20,7 +21,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${jetbrainsMono.variable} ${styles.htmlRoot}`}>
-      <body className={styles.body}>{children}</body>
+      <body className={styles.body}>
+        <CursorGlow />
+        {children}
+      </body>
     </html>
   );
 }

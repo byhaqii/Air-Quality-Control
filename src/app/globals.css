@@ -25,3 +25,16 @@ a,
 button {
   transition: all 160ms ease;
 }
+
+@media (hover: hover) {
+  main [data-card] {
+    transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+  }
+
+  main [data-card]:hover,
+  main [data-card]:focus-within {
+    transform: translateY(-0.3rem);
+    border-color: rgb(34 211 238 / 0.5);
+    box-shadow: 0 24px 72px -40px rgb(34 211 238 / 0.55), 0 0 0 1px rgb(34 211 238 / 0.16);
+  }
+}

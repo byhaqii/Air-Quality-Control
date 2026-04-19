@@ -6,7 +6,7 @@ export function DashboardOverview() {
   return (
     <section className={styles.section}>
       <div className={styles.mainGrid}>
-        <article className={styles.indexCard}>
+        <article className={styles.indexCard} data-card>
           <p className={styles.indexLabel}>Overall Index</p>
           <h2 className={styles.indexTitle}>Air Quality</h2>
           <div className={styles.indexValueRow}>
@@ -18,7 +18,7 @@ export function DashboardOverview() {
           </p>
         </article>
 
-        <article className={styles.chartCard}>
+        <article className={styles.chartCard} data-card>
           <h3 className={styles.chartTitle}>PM2.5 Concentration</h3>
           <p className={styles.chartSubtitle}>Real-time observation for the last hour.</p>
           <div className={styles.chartPlaceholderWrap}>
