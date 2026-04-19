@@ -9,7 +9,7 @@ export function AboutOverview() {
       </p>
 
       <div className={styles.grid}>
-        <article className={styles.card}>
+        <article className={styles.card} data-card>
           <h2 className={styles.title}>System Architecture</h2>
           <p className={styles.desc}>
             Sensor nodes send telemetry to cloud services, then the web app displays the latest
@@ -17,22 +17,22 @@ export function AboutOverview() {
           </p>
 
           <div className={styles.metricGrid}>
-            <div className={styles.metricCard}>
+            <div className={styles.metricCard} data-card>
               <p className={styles.metricLabel}>Latency</p>
               <p className={styles.metricValue}>&lt; 50ms</p>
             </div>
-            <div className={styles.metricCard}>
+            <div className={styles.metricCard} data-card>
               <p className={styles.metricLabel}>Precision</p>
               <p className={styles.metricValue}>99.9%</p>
             </div>
-            <div className={styles.metricCard}>
+            <div className={styles.metricCard} data-card>
               <p className={styles.metricLabel}>Uptime</p>
               <p className={styles.metricValue}>99.99%</p>
             </div>
           </div>
         </article>
 
-        <article className={styles.card}>
+        <article className={styles.card} data-card>
           <h3 className={styles.subtitle}>Neural Processing</h3>
           <p className={styles.desc}>
             Data is filtered and grouped before being shown on the dashboard.

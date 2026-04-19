@@ -1,0 +1,47 @@
+.field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.glow {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  opacity: 0;
+  background: radial-gradient(
+    circle,
+    rgb(59 130 246 / 0.9) 0%,
+    rgb(56 189 248 / 0.45) 40%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  animation-name: randomGlowPulse;
+  animation-timing-function: ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@keyframes randomGlowPulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -58%) scale(0.72);
+  }
+
+  45% {
+    opacity: var(--peak-opacity, 0.72);
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -38%) scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .field {
+    display: none;
+  }
+}

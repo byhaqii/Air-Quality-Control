@@ -17,7 +17,7 @@ export function StatCard({ label, value, unit, trend }: StatCardProps) {
   }
 
   return (
-    <article className={styles.card}>
+    <article className={styles.card} data-card>
       <div className={styles.row}>
         <p className={styles.label}>{label}</p>
         {trend ? <p className={`${styles.trend} ${trendColorClassName}`}>{trend}</p> : null}

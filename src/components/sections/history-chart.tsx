@@ -18,7 +18,7 @@ export function HistoryChart() {
 
   return (
     <section className={styles.section}>
-      <div className={styles.controlsCard}>
+      <div className={styles.controlsCard} data-card>
         <div className={styles.controlsRow}>
           <input
             type="text"
@@ -37,7 +37,7 @@ export function HistoryChart() {
         </div>
       </div>
 
-      <article className={styles.chartCard}>
+      <article className={styles.chartCard} data-card>
         <div className={styles.chartHeader}>
           <div>
             <h3 className={styles.chartTitle}>AQI Trend Analysis</h3>
@@ -69,7 +69,7 @@ export function HistoryChart() {
           <button className={styles.viewLogBtn}>View Full Log</button>
         </div>
 
-        <div className={styles.tableWrap}>
+        <div className={styles.tableWrap} data-card>
           <table className={styles.table}>
             <thead className={styles.thead}>
               <tr>

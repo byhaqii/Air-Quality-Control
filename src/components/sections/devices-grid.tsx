@@ -16,7 +16,7 @@ export function DevicesGrid() {
         const isOnline = device.status === "Online";
 
         return (
-          <article key={device.id} className={styles.card}>
+          <article key={device.id} className={styles.card} data-card>
             <div className={styles.head}>
               <h3 className={styles.name}>{device.name}</h3>
               <span className={getStatusClassName(isOnline)}>
