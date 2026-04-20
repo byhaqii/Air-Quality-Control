@@ -1,21 +1,45 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { auth } from "@/lib/firebase"; 
+import { signInWithEmailAndPassword } from "firebase/auth"; 
+import { useRouter } from "next/navigation"; 
 import { LoginGlowField } from "@/components/ui/login-glow-field";
 import styles from "../page.module.css";
 
 export default function LoginPage() {
-  const [identity, setIdentity] = useState("");
+  const [username, setUsername] = useState(""); // Menggunakan username
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("Authentication is disabled in this project.");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setMessage("Authentication is disabled in this project.");
-  };
+    setLoading(true);
+    setMessage("");
 
-  const handleRequestAccess = async () => {
-    setMessage("Request Access is disabled in this project.");
+    // Trick: Mengubah username menjadi format email internal
+    const internalEmail = `${username.toLowerCase()}@atmospheric.com`;
+
+    try {
+      await signInWithEmailAndPassword(auth, internalEmail, password);
+      setMessage("Access Granted. Redirecting...");
+      
+      setTimeout(() => {
+        router.push("/dashboard");
+      }, 1000);
+      
+    } catch (error: any) {
+      console.error("Login Error:", error.code);
+      if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found") {
+        setMessage("Invalid Username or Passphrase.");
+      } else {
+        setMessage("Connection failed. Check your network.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -27,33 +51,30 @@ export default function LoginPage() {
         <header className={styles.brandWrap}>
           <div className={styles.logo}>◉</div>
           <h1 className={styles.brand}>Atmospheric</h1>
-          <p className={styles.subtitle}>Air Quality Control</p>
+          <p className={styles.subtitle}>Air Quality Control System</p>
         </header>
 
         <article className={styles.card} data-card>
-          <h2 className={styles.cardTitle}>Login Page</h2>
-
-          <p className={styles.configNotice}>Authentication has been removed from this project.</p>
+          <h2 className={styles.cardTitle}>Terminal Login</h2>
 
           <form className={styles.form} onSubmit={handleLogin}>
-            <label className={styles.label} htmlFor="identity">ID</label>
+            <label className={styles.label} htmlFor="username">Operator Username</label>
             <div className={styles.inputWrap}>
               <span className={styles.inputIcon}>◈</span>
               <input
-                id="identity"
+                id="username"
                 className={styles.input}
-                type="email"
-                placeholder="Username or Email"
-                autoComplete="username"
-                value={identity}
-                onChange={(event) => setIdentity(event.target.value)}
-                disabled
+                type="text" // Ubah jadi text, bukan email
+                placeholder="Enter Username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
               />
             </div>
 
             <div className={styles.passRow}>
-              <label className={styles.label} htmlFor="passphrase">Password</label>
-              <a href="#" className={styles.helpLink}>Forgot?</a>
+              <label className={styles.label} htmlFor="passphrase">Passphrase</label>
+              <a href="#" className={styles.helpLink}>Recovery?</a>
             </div>
 
             <div className={styles.inputWrap}>
@@ -63,24 +84,26 @@ export default function LoginPage() {
                 className={styles.input}
                 type="password"
                 placeholder="••••••••"
-                autoComplete="current-password"
                 value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                disabled
+                onChange={(e) => setPassword(e.target.value)}
+                required
               />
-              <span className={styles.eyeIcon}>◌</span>
             </div>
 
-            <button type="submit" className={styles.submitBtn} disabled>
-              Login Disabled
+            <button 
+              type="submit" 
+              className={styles.submitBtn} 
+              disabled={loading}
+            >
+              {loading ? "Verifying..." : "Establish Secure Link"}
             </button>
 
-            {message ? <p className={styles.formMessage}>{message}</p> : null}
+            {message ? <p className={styles.formMessage} style={{color: message.includes('Granted') ? '#00ff00' : '#ff4444'}}>{message}</p> : null}
           </form>
 
           <footer className={styles.cardFooter}>
-            <span>No active clearance?</span>
-            <button type="button" className={styles.footerLinkButton} onClick={handleRequestAccess}>
+            <span>No clearance level?</span>
+            <button type="button" className={styles.footerLinkButton}>
               Request Access
             </button>
           </footer>

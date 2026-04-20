@@ -20,7 +20,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jetbrainsMono.variable} ${styles.htmlRoot}`}>
+    <html 
+      lang="en" 
+      className={`${jetbrainsMono.variable} ${styles.htmlRoot}`}
+      suppressHydrationWarning // <--- Tambahkan ini
+    >
       <body className={styles.body}>
         <CursorGlow />
         {children}
