@@ -1,6 +1,12 @@
 @import url("https://api.fontshare.com/v2/css?f[]=clash-grotesk");
 @import "tailwindcss";
 
+html {
+  /* Memastikan ruang scrollbar selalu dipesan agar layout tidak geser-geser 
+     saat pindah dari halaman panjang ke halaman pendek */
+  overflow-y: scroll;
+}
+
 :root {
   --background: #020617;
   --foreground: #e2e8f0;
@@ -37,4 +43,21 @@ button {
     border-color: rgb(34 211 238 / 0.5);
     box-shadow: 0 24px 72px -40px rgb(34 211 238 / 0.55), 0 0 0 1px rgb(34 211 238 / 0.16);
   }
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.4);
 }
