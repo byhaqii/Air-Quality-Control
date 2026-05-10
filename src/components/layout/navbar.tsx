@@ -15,6 +15,7 @@ const Navbar = () => {
     { name: 'Data', href: '/dashboard/data', icon: Database },
   ];
 
+  // Fungsi handleLogout tetap ada untuk kompatibilitas jika diperlukan
   const handleLogout = () => {
     // Tambahkan logika hapus token/session di sini jika ada
     router.push('/login');
@@ -70,14 +71,14 @@ const Navbar = () => {
               </div>
             </Link>
             
-            {/* Tombol Logout */}
-            <button 
-              onClick={handleLogout}
-              className="text-gray-400 hover:text-red-500 transition-colors p-1"
-              title="Logout"
-            >
-              <LogOut className="w-5 h-5" />
-            </button>
+            {/* Perbaikan: Menggunakan tag <a> murni untuk Logout Desktop */}
+          <a 
+          href="/login"
+          className="text-gray-400 hover:text-red-500 active:text-red-600 transition-colors p-1"
+          title="Logout"
+          >
+          <LogOut className="w-5 h-5" />
+          </a>
           </div>
         </div>
       </nav>
@@ -95,9 +96,14 @@ const Navbar = () => {
             </div>
           </Link>
           
-          <button onClick={handleLogout} className="text-gray-400 p-1">
-            <LogOut className="w-5 h-5" />
-          </button>
+          {/* Perbaikan: Menggunakan tag <a> murni untuk Logout Mobile agar responsif di HP */}
+        <a 
+          href="/login" 
+          className="text-gray-400 active:text-red-500 p-1 transition-colors"
+          style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
+        >
+          <LogOut className="w-5 h-5" />
+        </a>
         </div>
       </div>
 
