@@ -1,18 +1,18 @@
-import { DevicesGrid } from "@/components/sections/devices-grid";
+import { HistoryChart } from "@/components/sections/history-chart";
 
-export default function DevicesPage() {
+export default function HistoryPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-1">
         <h1 className="text-2xl font-bold tracking-tight text-white font-[family-name:var(--font-jetbrains-mono)]">
-          Sensor Network
+          Historical Data
         </h1>
         <p className="text-sm text-gray-400 font-[family-name:var(--font-jetbrains-mono)]">
-          Manage and monitor all deployed atmospheric sensors from one place.
+          Review past atmospheric metrics and identify long-term environmental trends.
         </p>
       </div>
 
-      <DevicesGrid />
+      <HistoryChart />
     </div>
   );
 }
