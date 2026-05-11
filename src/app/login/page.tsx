@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { auth } from "@/lib/firebase"; 
-import { signInWithEmailAndPassword } from "firebase/auth"; 
 import { useRouter } from "next/navigation"; 
 import { LoginGlowField } from "@/components/ui/login-glow-field";
 import styles from "../page.module.css";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState(""); // Menggunakan username
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,24 +17,31 @@ export default function LoginPage() {
     setLoading(true);
     setMessage("");
 
-    // Trick: Mengubah username menjadi format email internal
-    const internalEmail = `${username.toLowerCase()}@atmospheric.com`;
-
     try {
-      await signInWithEmailAndPassword(auth, internalEmail, password);
-      setMessage("Access Granted. Redirecting...");
-      
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
-      
-    } catch (error: any) {
-      console.error("Login Error:", error.code);
-      if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found") {
-        setMessage("Invalid Username or Passphrase.");
+      // Menghubungkan ke API Route Next.js
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setMessage(`Access Granted. Welcome ${data.role}!`);
+        
+        // Simpan Role ke LocalStorage untuk pengecekan di Dashboard nanti
+        localStorage.setItem("userRole", data.role);
+        localStorage.setItem("userName", data.username);
+
+        setTimeout(() => {
+          router.push("/dashboard");
+        }, 1000);
       } else {
-        setMessage("Connection failed. Check your network.");
+        setMessage(data.error || "Access Denied.");
       }
+    } catch (error) {
+      setMessage("System Offline. Check Connection.");
     } finally {
       setLoading(false);
     }
@@ -64,7 +69,7 @@ export default function LoginPage() {
               <input
                 id="username"
                 className={styles.input}
-                type="text" // Ubah jadi text, bukan email
+                type="text"
                 placeholder="Enter Username"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
@@ -90,22 +95,20 @@ export default function LoginPage() {
               />
             </div>
 
-            <button 
-              type="submit" 
-              className={styles.submitBtn} 
-              disabled={loading}
-            >
-              {loading ? "Verifying..." : "Establish Secure Link"}
+            <button type="submit" className={styles.submitBtn} disabled={loading}>
+              {loading ? "Verifying Identity..." : "Establish Secure Link"}
             </button>
 
-            {message ? <p className={styles.formMessage} style={{color: message.includes('Granted') ? '#00ff00' : '#ff4444'}}>{message}</p> : null}
+            {message && (
+              <p className={styles.formMessage} style={{ color: message.includes('Granted') ? '#00ff00' : '#ff4444' }}>
+                {message}
+              </p>
+            )}
           </form>
 
           <footer className={styles.cardFooter}>
             <span>No clearance level?</span>
-            <button type="button" className={styles.footerLinkButton}>
-              Request Access
-            </button>
+            <button type="button" className={styles.footerLinkButton}>Request Access</button>
           </footer>
         </article>
       </section>

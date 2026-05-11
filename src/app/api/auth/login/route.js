@@ -3,14 +3,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(request) {
   try {
-    const { email, password } = await request.json();
+    const { username, password } = await request.json();
 
-    if (!email || !password) {
-      return NextResponse.json({ error: "Email dan Password wajib diisi" }, { status: 400 });
+    if (!username || !password) {
+      return NextResponse.json({ error: "Username dan Password wajib diisi" }, { status: 400 });
     }
 
     const userQuery = await db.collection("users")
-      .where("email", "==", email)
+      .where("username", "==", username)
       .limit(1)
       .get();
 
@@ -27,11 +27,12 @@ export async function POST(request) {
 
     return NextResponse.json({
       message: "Login Berhasil",
-      email: userData.email,
-      role: userData.role
-    });
+      username: userData.username,
+      role: userData.role,
+    }, { status: 200 });
 
   } catch (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    console.error("API Error:", error);
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
   }
 }

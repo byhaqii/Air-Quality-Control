@@ -4,6 +4,14 @@ import styles from "./history-chart.module.css";
 export function HistoryChart() {
   const maxValue = Math.max(...historyData.map((item) => item.aqi));
 
+  // Demo summary data
+  const averageAQI = Math.round(
+    historyData.reduce((acc, item) => acc + item.aqi, 0) / historyData.length
+  );
+
+  const highestAQI = Math.max(...historyData.map((item) => item.aqi));
+  const lowestAQI = Math.min(...historyData.map((item) => item.aqi));
+
   const getStatusClassName = (status: string) => {
     if (status === "Elevated") {
       return `${styles.statusPill} ${styles.statusElevated}`;
@@ -26,11 +34,15 @@ export function HistoryChart() {
             className={styles.searchInput}
             readOnly
           />
+
           <div className={styles.tabWrap}>
-            <button className={`${styles.tabButton} ${styles.tabButtonActive}`}>Daily</button>
+            <button className={`${styles.tabButton} ${styles.tabButtonActive}`}>
+              Daily
+            </button>
             <button className={styles.tabButton}>Weekly</button>
             <button className={styles.tabButton}>Monthly</button>
           </div>
+
           <div className={styles.datePill}>
             Oct 1 - Oct 31, 2023
           </div>
@@ -41,11 +53,32 @@ export function HistoryChart() {
         <div className={styles.chartHeader}>
           <div>
             <h3 className={styles.chartTitle}>AQI Trend Analysis</h3>
-            <p className={styles.chartSubtitle}>Aggregated air quality index over selected period.</p>
+            <p className={styles.chartSubtitle}>
+              Aggregated air quality index over selected period.
+            </p>
           </div>
+
           <div className={styles.legend}>
-            <span className={styles.legendPill}>PM2.5</span>
-            <span className={styles.legendPill}>CO2</span>
+            <span className={styles.legendPill}>LPG</span>
+            <span className={styles.legendPill}>CO</span>
+          </div>
+        </div>
+
+        {/* DEMO INFO */}
+        <div className={styles.demoStats}>
+          <div className={styles.demoCard}>
+            <span className={styles.demoLabel}>Average AQI</span>
+            <h2 className={styles.demoValue}>{averageAQI}</h2>
+          </div>
+
+          <div className={styles.demoCard}>
+            <span className={styles.demoLabel}>Highest AQI</span>
+            <h2 className={styles.demoValue}>{highestAQI}</h2>
+          </div>
+
+          <div className={styles.demoCard}>
+            <span className={styles.demoLabel}>Lowest AQI</span>
+            <h2 className={styles.demoValue}>{lowestAQI}</h2>
           </div>
         </div>
 
@@ -57,6 +90,8 @@ export function HistoryChart() {
                 style={{ height: `${(item.aqi / maxValue) * 100}%` }}
                 title={`${item.day}: ${item.aqi}`}
               />
+
+              <span className={styles.barValue}>{item.aqi}</span>
               <span className={styles.barLabel}>{item.day}</span>
             </div>
           ))}
@@ -75,20 +110,39 @@ export function HistoryChart() {
               <tr>
                 <th className={styles.th}>Timestamp</th>
                 <th className={styles.th}>Sensor ID</th>
-                <th className={styles.th}>PM2.5 (ug/m3)</th>
-                <th className={styles.th}>CO2 (ppm)</th>
+                <th className={styles.th}>LPG (ppm)</th>
+                <th className={styles.th}>CO (ppm)</th>
                 <th className={styles.th}>Temp (C)</th>
                 <th className={styles.th}>Status</th>
               </tr>
             </thead>
+
             <tbody>
               {anomalies.map((row) => (
-                <tr key={`${row.time}-${row.sensorId}`} className={styles.row}>
-                  <td className={`${styles.td} ${styles.time}`}>{row.time}</td>
-                  <td className={`${styles.td} ${styles.sensor}`}>{row.sensorId}</td>
-                  <td className={`${styles.td} ${styles.pm}`}>{row.pm25}</td>
-                  <td className={`${styles.td} ${styles.co2}`}>{row.co2}</td>
-                  <td className={`${styles.td} ${styles.temp}`}>{row.temperature}</td>
+                <tr
+                  key={`${row.time}-${row.sensorId}`}
+                  className={styles.row}
+                >
+                  <td className={`${styles.td} ${styles.time}`}>
+                    {row.time}
+                  </td>
+
+                  <td className={`${styles.td} ${styles.sensor}`}>
+                    {row.sensorId}
+                  </td>
+
+                  <td className={`${styles.td} ${styles.pm}`}>
+                    {row.pm25}
+                  </td>
+
+                  <td className={`${styles.td} ${styles.co2}`}>
+                    {row.co2}
+                  </td>
+
+                  <td className={`${styles.td} ${styles.temp}`}>
+                    {row.temperature}
+                  </td>
+
                   <td className={styles.td}>
                     <span className={getStatusClassName(row.status)}>
                       {row.status}

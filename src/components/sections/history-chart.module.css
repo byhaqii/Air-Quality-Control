@@ -236,3 +236,86 @@
     width: 38%;
   }
 }
+
+.demoStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.demoCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1rem;
+}
+
+.demoLabel {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.demoValue {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.4rem;
+  color: white;
+}
+
+.barValue {
+  font-size: 0.75rem;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+}
+
+.barsGrid {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+
+  height: 300px; /* penting */
+  margin-top: 2rem;
+}
+
+.barItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+
+  height: 100%;
+}
+
+.bar {
+  width: 100%;
+  max-width: 40px;
+
+  background: linear-gradient(
+    to top,
+    #3b82f6,
+    #60a5fa
+  );
+
+  border-radius: 10px 10px 0 0;
+  transition: 0.3s;
+}
+
+.bar:hover {
+  opacity: 0.8;
+  transform: translateY(-4px);
+}
+
+.barLabel {
+  margin-top: 0.8rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+}
+
+.barValue {
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}

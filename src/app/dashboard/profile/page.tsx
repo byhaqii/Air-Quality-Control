@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { User, Mail, MapPin, GraduationCap, Calendar, ShieldCheck, Lock, Info, Camera, Edit3, Save, X } from 'lucide-react';
+import {  ShieldCheck, Lock, Camera, Edit3, Save, X } from 'lucide-react';
 import { AboutOverview } from "@/components/sections/about-overview";
 
 export default function ProfilePage() {
