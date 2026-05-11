@@ -1,20 +1,18 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
+import { initializeApp, getApps } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWw83DGsRTb9PgwLibOofNkC4Tt5MTbtw",
-  authDomain: "air-quality-control-201c0.firebaseapp.com",
-  projectId: "air-quality-control-201c0",
-  databaseURL: "https://air-quality-control-201c0-default-rtdb.asia-southeast1.firebasedatabase.app/",
-  storageBucket: "air-quality-control-201c0.firebasestorage.app",
-  messagingSenderId: "304115318204",
-  appId: "1:304115318204:web:78b317c6b7157f8c3b3fb9"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: "pbl-airquality.firebasestorage.app",
+  messagingSenderId: "462716835324",
+  appId: "1:462716835324:web:2b3069834f2cd44f008e79"
 };
 
-const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
-const db = getDatabase(app);
-const auth = getAuth(app);
-
-export { db, auth }; 
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+export default app;
